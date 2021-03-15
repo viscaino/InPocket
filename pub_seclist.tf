@@ -12,34 +12,31 @@ resource "oci_core_security_list" "seclist_public" {
     compartment_id      = "${lookup(oci_identity_compartment.child_compartment["Network"], "id")}"
     vcn_id              = "${oci_core_vcn.create_vcn.id}"
     display_name        = "${var.env_prefix}${var.vcn_name}${var.public_seclist_name}"
-    
-    dynamic "ingress_security_rules" {
-        for_each = "${var.pub_seclist_ingress_rules}"
-        content {
 
-            protocol    = "${ingress_security_rules.value["protocol"]}"
-            source      = "${ingress_security_rules.value["source"]}"
+  // allow outbound udp traffic on a port range
+  egress_security_rules {
+    destination = "0.0.0.0/0"
+    protocol    = "17" // udp
+    stateless   = true
 
-            tcp_options {
-                min     = "${ingress_security_rules.value["min"]}"
-                max     = "${ingress_security_rules.value["max"]}"
-            }
-        }
+    udp_options {
+      min = 319
+      max = 320
     }
+  }
 
-    dynamic "egress_security_rules" {
-        for_each = "${var.pub_seclist_egress_rules}"
-        content {
+  // allow inbound ssh traffic
+  ingress_security_rules {
+    protocol  = "6" // tcp
+    source    = "0.0.0.0/0"
+    stateless = false
 
-            protocol    = "${egress_security_rules.value["protocol"]}"
-            destination = "${egress_security_rules.value["destination"]}"
-
-            tcp_options {
-                min     = "${egress_security_rules.value["min"]}"
-                max     = "${egress_security_rules.value["max"]}"
-            }
-        }
+    tcp_options {
+      min = 22
+      max = 22
     }
+  }
+
 }
 
 output "Public_SecurityList_ID" {
