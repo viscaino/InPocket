@@ -1,5 +1,13 @@
 // 2021, Terradorm file created by Bruno Viscaino
 
+data "oci_core_services" "test_services" {
+  filter {
+    name   = "name"
+    values = ["All .* Services In Oracle Services Network"]
+    regex  = true
+  }
+}
+
 ## CREATE A VCN:
 
 resource "oci_core_vcn" "create_vcn" {
