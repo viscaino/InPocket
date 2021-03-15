@@ -5,7 +5,7 @@
 
 resource "oci_core_route_table" "public" {
     display_name    = "${var.env_prefix}${var.vcn_name}${var.pub_route_tab_name}"
-    compartment_id  = "${lookup(oci_identity_compartment.child_compartment["Network"], "id")}"
+    compartment_id  = "${oci_identity_compartment.parent_compartment.id}"
     vcn_id          = "${oci_core_vcn.create_vcn.id}"
     
     route_rules {

@@ -19,18 +19,6 @@ variable "env_prefix" {
     default = "D101"
 }
 
-## Nested Compartment Map:
-#
-variable "childmap" {
-    type = map
-    default = {
-        Network  = "Network Compartment",
-        Compute  = "Compute Compartment",
-        Storage  = "Storage Compartment",
-        Database = "Database Compartment"
-    }
-}
-
 ## VCN Name:
 #
 variable "vcn_name" {
