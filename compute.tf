@@ -27,9 +27,9 @@ resource "oci_core_instance" "my_pub_instance" {
         display_name        = "ServName1_pubvnic"
         assign_public_ip    = true
     }
-    
+    /*
     metadata    = {
         ssh_authorized_keys = "${file(var.ssh_public_key)}"
     }
-
+    */
 }
