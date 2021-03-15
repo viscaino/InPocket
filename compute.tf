@@ -9,10 +9,15 @@
 ##          
 ###################################################################
 
+data "oci_identity_availability_domain" "ad" {
+  compartment_id = var.tenancy_ocid
+  ad_number      = 1
+}
+
 #--INSTANCE-CREATION------------------------------------------------------------------------------------
 #
 resource "oci_core_instance" "my_pub_instance" {
-    availability_domain = "hSxN:US-ASHBURN-AD-2"
+    availability_domain = data.oci_identity_availability_domain.ad.name
     compartment_id      = "${oci_identity_compartment.parent_compartment.id}"
     display_name        = "ServName1"
     shape               = "VM.Standard.E3.Flex"
@@ -24,7 +29,7 @@ resource "oci_core_instance" "my_pub_instance" {
     
     source_details {
         source_type = "image"
-        source_id   = "ocid1.image.oc1.iad.aaaaaaaageeenzyuxgia726xur4ztaoxbxyjlxogdhreu3ngfj2gji3bayda"
+        source_id = var.flex_instance_image_ocid[var.region]
     }
 
     create_vnic_details {
