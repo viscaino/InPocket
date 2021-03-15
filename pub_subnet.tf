@@ -5,7 +5,7 @@
 
 resource "oci_core_subnet" "public" {    
     display_name        = "${var.env_prefix}${var.vcn_name}${var.public_subnet_name}"
-    compartment_id      = "${lookup(oci_identity_compartment.child_compartment["Network"], "id")}"
+    compartment_id      = "${oci_identity_compartment.parent_compartment.id}"
     vcn_id              = "${oci_core_vcn.create_vcn.id}"
     cidr_block          = "${var.public_subnet_cidr}"
     route_table_id      = "${oci_core_route_table.public.id}"
