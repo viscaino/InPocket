@@ -17,7 +17,6 @@ data "oci_identity_availability_domain" "ad" {
 #--INSTANCE-CREATION------------------------------------------------------------------------------------
 #
 resource "oci_core_instance" "my_pub_instance" {
-    region              = "us-ashburn-1"
     availability_domain = data.oci_identity_availability_domain.ad.name
     compartment_id      = "${oci_identity_compartment.parent_compartment.id}"
     display_name        = "ServName1"
