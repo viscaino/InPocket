@@ -22,7 +22,7 @@ variable "env_prefix" {
 ## Nested Compartment Map:
 #
 variable "childmap" {
-    type = "map"
+    type = map
     default = {
         Network  = "Network Compartment",
         Compute  = "Compute Compartment",
