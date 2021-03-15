@@ -15,7 +15,12 @@ resource "oci_core_instance" "my_pub_instance" {
     availability_domain = "hSxN:US-ASHBURN-AD-2"
     compartment_id      = "${oci_identity_compartment.parent_compartment.id}"
     display_name        = "ServName1"
-    shape               = "VM.Standard.E2.2"
+    shape               = "VM.Standard.E3.Flex"
+
+    shape_config {
+    ocpus = 2
+    memory_in_gbs = 4
+    }
     
     source_details {
         source_type = "image"
