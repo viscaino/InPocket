@@ -2,7 +2,15 @@
 #
 # VARIABLE FILE
 #
-
+/*
+# OCI Region Definition:
+#
+variable "region" {
+    default = "us-ashburn-1"
+}
+*/
+# OCI Tenancy:
+#
 variable "tenancy_ocid" {
     default = "ocid1.tenancy.oc1..aaaaaaaakankmz2x3rclvsqfxvro7f6iar2cowvb6inb7pe5th7fmxthrigq"
 }
