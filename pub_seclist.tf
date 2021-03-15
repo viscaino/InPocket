@@ -9,7 +9,7 @@
 ###################################################################
 
 resource "oci_core_security_list" "seclist_public" {
-    compartment_id      = "${oci_identity_compartment.child_compartment.id}"
+    compartment_id      = "${oci_identity_compartment.parent_compartment.id}"
     vcn_id              = "${oci_core_vcn.create_vcn.id}"
     display_name        = "${var.env_prefix}${var.vcn_name}${var.public_seclist_name}"
 
