@@ -24,7 +24,7 @@ variable "root_compartment" {
 ## Environment in use:
 #
 variable "env_prefix" {
-    default = "D101"
+    default = "InPocket"
 }
 
 ## VCN Name:
@@ -36,7 +36,7 @@ variable "vcn_name" {
 ## VCN CIDR:
 #
 variable "vcn_cidr" {
-    default = "10.0.0.0/16"
+    default = "11.0.0.0/16"
 }
 
 ## Public Subnet Name:
@@ -48,7 +48,7 @@ variable "public_subnet_name" {
 ## Public Subnet CIDR:
 #
 variable "public_subnet_cidr" {
-    default = "10.0.2.0/24"
+    default = "11.0.2.0/24"
 }
 
 ## Public Route Table Name:
