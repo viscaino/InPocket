@@ -5,11 +5,11 @@
 
 # OCI Region Definition:
 #
-/*
+
 variable "region" {
     default = "us-ashburn-1"
 }
-*/
+
 # OCI Tenancy:
 #
 variable "tenancy_ocid" {
